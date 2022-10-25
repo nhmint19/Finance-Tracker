@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Swinburne_Studying/2022_sem2/COS30017_Software_Dev_for_Mobile_Devices/custom-app-nhmint19/FinanceTracker/app/src/main/res/drawable/add_icon.xml" value="0.1285" />
+        <entry key="..\:/Swinburne_Studying/2022_sem2/COS30017_Software_Dev_for_Mobile_Devices/custom-app-nhmint19/FinanceTracker/app/src/main/res/drawable/circle.xml" value="0.1" />
+        <entry key="..\:/Swinburne_Studying/2022_sem2/COS30017_Software_Dev_for_Mobile_Devices/custom-app-nhmint19/FinanceTracker/app/src/main/res/drawable/hamburger.xml" value="0.1495" />
+        <entry key="..\:/Swinburne_Studying/2022_sem2/COS30017_Software_Dev_for_Mobile_Devices/custom-app-nhmint19/FinanceTracker/app/src/main/res/drawable/transaction_bg.xml" value="0.148" />
+        <entry key="..\:/Swinburne_Studying/2022_sem2/COS30017_Software_Dev_for_Mobile_Devices/custom-app-nhmint19/FinanceTracker/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Swinburne_Studying/2022_sem2/COS30017_Software_Dev_for_Mobile_Devices/custom-app-nhmint19/FinanceTracker/app/src/main/res/layout/fragment_add_transaction.xml" value="0.2" />
+        <entry key="..\:/Swinburne_Studying/2022_sem2/COS30017_Software_Dev_for_Mobile_Devices/custom-app-nhmint19/FinanceTracker/app/src/main/res/layout/fragment_transaction_lists.xml" value="0.4" />
+        <entry key="..\:/Swinburne_Studying/2022_sem2/COS30017_Software_Dev_for_Mobile_Devices/custom-app-nhmint19/FinanceTracker/app/src/main/res/layout/fragment_update_transaction.xml" value="0.2" />
+        <entry key="..\:/Swinburne_Studying/2022_sem2/COS30017_Software_Dev_for_Mobile_Devices/custom-app-nhmint19/FinanceTracker/app/src/main/res/layout/transaction_layout.xml" value="0.1734375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

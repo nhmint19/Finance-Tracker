@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FinanceTracker</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!--    Main activity strings    -->
+    <string name="total">TOTAL</string>
+    <string name="expense">EXPENSE</string>
+    <string name="income">INCOME</string>
+</resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/transactionListsFragment">
+    <fragment
+        android:id="@+id/transactionListsFragment"
+        android:name="com.example.financetracker.transactions.read.TransactionListsFragment"
+        android:label="List Fragment"
+        tools:layout="@layout/fragment_transaction_lists" >
+        <action
+            android:id="@+id/action_transactionListsFragment_to_addTransactionFragment"
+            app:destination="@id/addTransactionFragment" />
+        <action
+            android:id="@+id/action_transactionListsFragment_to_updateTransactionFragment"
+            app:destination="@id/updateTransactionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTransactionFragment"
+        android:name="com.example.financetracker.transactions.create.AddTransactionFragment"
+        android:label="Add Fragment"
+        tools:layout="@layout/fragment_add_transaction" >
+        <action
+            android:id="@+id/action_addTransactionFragment_to_transactionListsFragment"
+            app:destination="@id/transactionListsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateTransactionFragment"
+        android:name="com.example.financetracker.transactions.update.UpdateTransactionFragment"
+        android:label="UpdateTransactionFragment" >
+        <action
+            android:id="@+id/action_updateTransactionFragment_to_transactionListsFragment"
+            app:destination="@id/transactionListsFragment" />
+        <argument
+            android:name="curTransaction"
+            app:argType="com.example.financetracker.model.Transaction" />
+    </fragment>
+</navigation>
