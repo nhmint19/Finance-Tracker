@@ -1,17 +1,14 @@
 package com.example.financetracker
 
-import android.graphics.Color
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
-import androidx.fragment.app.ListFragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.financetracker.model.Transaction
+import com.example.financetracker.data.model.Transaction
 import com.example.financetracker.transactions.read.TransactionListsFragmentDirections
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -78,7 +75,7 @@ class TransactionAdapter: RecyclerView.Adapter<TransactionAdapter.ViewHolder>() 
     }
 
     fun calculateTotal() : Triple<Float, Float, Float> {
-        var expense = 0f
+        var expense = -0f
         var income = 0f
         transactions.forEach {
             if (it.amount < 0) {
@@ -88,6 +85,7 @@ class TransactionAdapter: RecyclerView.Adapter<TransactionAdapter.ViewHolder>() 
                 income += it.amount
             }
         }
+
         return Triple(-expense, income, income + expense)
     }
 }

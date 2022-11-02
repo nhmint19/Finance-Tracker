@@ -8,16 +8,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.Toast
+import android.widget.*
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.financetracker.R
-import com.example.financetracker.model.Transaction
-import com.example.financetracker.viewmodel.TransactionViewModel
+import com.example.financetracker.data.model.Category
+import com.example.financetracker.data.model.Transaction
+import com.example.financetracker.data.viewmodel.CategoryViewModel
+import com.example.financetracker.data.viewmodel.TransactionViewModel
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*
@@ -25,6 +25,8 @@ import kotlin.math.abs
 
 class UpdateTransactionFragment : Fragment() {
     private lateinit var transactionVM: TransactionViewModel
+    private lateinit var categoryVM: CategoryViewModel
+    private var categories = emptyList<Category>()
     private val args by navArgs<UpdateTransactionFragmentArgs>()
 
     override fun onCreateView(
@@ -40,7 +42,7 @@ class UpdateTransactionFragment : Fragment() {
         // Get current transaction data
         view.let {
             val nameView = it.findViewById<TextInputEditText>(R.id.name_edit)
-            val categoryView = it.findViewById<TextInputEditText>(R.id.category_edit)
+            val categoryView = it.findViewById<AutoCompleteTextView>(R.id.category_edit)
             val dateView = it.findViewById<TextInputEditText>(R.id.date_edit)
             val amountView = it.findViewById<TextInputEditText>(R.id.amount_edit)
             val dateFormat = SimpleDateFormat("dd/MM/yyyy")
@@ -65,11 +67,6 @@ class UpdateTransactionFragment : Fragment() {
             it.findViewById<Button>(R.id.update_btn).setOnClickListener {
                 val name = nameView.text.toString()
                 val category = categoryView.text.toString()
-                val date = dateFormat.parse(dateView.text.toString()).time
-                val amount = getAmountFromType(
-                    view,
-                    amountView.text.toString().toFloat()
-                )
                 if (TextUtils.isEmpty(name))
                     nameView.error = "Name must not be empty"
                 else if (TextUtils.isEmpty(category))
@@ -87,7 +84,7 @@ class UpdateTransactionFragment : Fragment() {
                     amountView.error = "Please select a type of transaction"
                 else
                 {
-                    var date = dateFormat.parse(dateView.text.toString()).time
+                    val date = dateFormat.parse(dateView.text.toString()).time
                     val amount = getAmountFromType(
                         view,
                         amountView.text.toString().toFloat()
@@ -101,6 +98,7 @@ class UpdateTransactionFragment : Fragment() {
 
             // set listener for delete button
             it.findViewById<Button>(R.id.delete_btn).setOnClickListener {
+                // create a cofirmation dialog
                 var alertDialog = AlertDialog.Builder(requireContext())
                 alertDialog.setTitle("Delete ${args.curTransaction.name}?")
                 alertDialog.setMessage("Are you sure you want to delete ${args.curTransaction.name}?")
@@ -114,8 +112,20 @@ class UpdateTransactionFragment : Fragment() {
             }
         }
 
+        // Category drop down
+        categoryVM = ViewModelProvider(this)[CategoryViewModel::class.java]
+        categoryVM.readAllCategories.observe(viewLifecycleOwner, Observer {
+                categoryList ->
+            run {
+                categories = categoryList
+                val adapter = ArrayAdapter( requireContext(), R.layout.dropdown_category, categories.map { category -> category.name})
+                view.findViewById<AutoCompleteTextView>(R.id.category_edit).setAdapter(adapter)
+            }
+        })
+
         return view
     }
+
     // date input click event
     private fun onClickDateInput(view: TextInputEditText) {
         // get instance of calendar

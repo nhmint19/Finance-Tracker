@@ -1,8 +1,8 @@
-package com.example.financetracker.data
+package com.example.financetracker.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.financetracker.model.Transaction
+import com.example.financetracker.data.model.Transaction
 
 // DAO to interact with the database
 @Dao
@@ -12,7 +12,7 @@ interface TransactionDAO {
     fun addTransaction(transaction: Transaction)
 
     // Show all data
-    @Query("SELECT * FROM transaction_table ORDER BY id ASC")
+    @Query("SELECT * FROM transaction_table ORDER BY date DESC")
     fun readAllTransactions(): LiveData<List<Transaction>>
 
     // Update an existing transaction

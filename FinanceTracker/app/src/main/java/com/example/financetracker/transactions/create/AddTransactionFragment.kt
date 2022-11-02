@@ -1,28 +1,31 @@
 package com.example.financetracker.transactions.create
 
 import android.app.DatePickerDialog
-import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.Toast
+import android.widget.*
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.financetracker.CategoryDropdownAdapter
 import com.example.financetracker.R
-import com.example.financetracker.model.Transaction
-import com.example.financetracker.viewmodel.TransactionViewModel
+import com.example.financetracker.data.model.Category
+import com.example.financetracker.data.model.Transaction
+import com.example.financetracker.data.viewmodel.CategoryViewModel
+import com.example.financetracker.data.viewmodel.TransactionViewModel
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class AddTransactionFragment : Fragment() {
     private lateinit var transactionVM: TransactionViewModel
+    private lateinit var categoryVM: CategoryViewModel
+    private var categories = emptyList<Category>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,7 @@ class AddTransactionFragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_add_transaction, container, false)
 
         val nameView = view.findViewById<TextInputEditText>(R.id.name_add)
-        val categoryView = view.findViewById<TextInputEditText>(R.id.category_add)
+        val categoryView = view.findViewById<AutoCompleteTextView>(R.id.category_add)
         val dateView = view.findViewById<TextInputEditText>(R.id.date_add)
         val amountView = view.findViewById<TextInputEditText>(R.id.amount_add)
 
@@ -79,8 +82,20 @@ class AddTransactionFragment : Fragment() {
                 findNavController().navigate(R.id.action_addTransactionFragment_to_transactionListsFragment)
             }
         }
+
+        // Category drop down
+        categoryVM = ViewModelProvider(this)[CategoryViewModel::class.java]
+        categoryVM.readAllCategories.observe(viewLifecycleOwner, Observer {
+            categoryList ->
+            run {
+                categories = categoryList
+                val adapter = ArrayAdapter( requireContext(), R.layout.dropdown_category, categories.map { category -> category.name})
+                view.findViewById<AutoCompleteTextView>(R.id.category_add).setAdapter(adapter)
+            }
+        })
         return view
     }
+
     // date input click event
     private fun onClickDateInput(view: TextInputEditText) {
         // get instance of calendar

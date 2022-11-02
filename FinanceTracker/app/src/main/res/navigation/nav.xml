@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/transactionListsFragment"
         android:name="com.example.financetracker.transactions.read.TransactionListsFragment"
-        android:label="List Fragment"
+        android:label="ListTransactionFragment"
         tools:layout="@layout/fragment_transaction_lists" >
         <action
             android:id="@+id/action_transactionListsFragment_to_addTransactionFragment"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/addTransactionFragment"
         android:name="com.example.financetracker.transactions.create.AddTransactionFragment"
-        android:label="Add Fragment"
+        android:label="AddTransactionFragment"
         tools:layout="@layout/fragment_add_transaction" >
         <action
             android:id="@+id/action_addTransactionFragment_to_transactionListsFragment"
@@ -34,6 +34,37 @@
             app:destination="@id/transactionListsFragment" />
         <argument
             android:name="curTransaction"
-            app:argType="com.example.financetracker.model.Transaction" />
+            app:argType="com.example.financetracker.data.model.Transaction" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryListsFragment"
+        android:name="com.example.financetracker.categories.CategoryListsFragment"
+        android:label="ListCategoryFragment"
+        tools:layout="@layout/fragment_category_lists" >
+        <action
+            android:id="@+id/action_categoryListsFragment_to_addCategoryFragment"
+            app:destination="@id/addCategoryFragment" />
+        <action
+            android:id="@+id/action_categoryListsFragment_to_updateCategoryFragment"
+            app:destination="@id/updateCategoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCategoryFragment"
+        android:name="com.example.financetracker.categories.AddCategoryFragment"
+        android:label="AddCategoryFragment" >
+        <action
+            android:id="@+id/action_addCategoryFragment_to_categoryListsFragment"
+            app:destination="@id/categoryListsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateCategoryFragment"
+        android:name="com.example.financetracker.categories.UpdateCategoryFragment"
+        android:label="UpdateCategoryFragment" >
+        <action
+            android:id="@+id/action_updateCategoryFragment_to_categoryListsFragment"
+            app:destination="@id/categoryListsFragment" />
+        <argument
+            android:name="curCategory"
+            app:argType="com.example.financetracker.data.model.Category" />
     </fragment>
 </navigation>

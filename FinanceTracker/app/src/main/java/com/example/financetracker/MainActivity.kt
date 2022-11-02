@@ -1,37 +1,29 @@
 package com.example.financetracker
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.widget.ImageView
-import android.widget.Toolbar
-import androidx.core.view.GravityCompat
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // set up drawer from Hamburger button
-        var drawer = findViewById<DrawerLayout>(R.id.drawerLayout)
-        findViewById<ImageView>(R.id.hamburger).setOnClickListener {
-            drawer.openDrawer(GravityCompat.END)
-        }
-
-        setSupportActionBar(findViewById(R.id.navbar))
-        // navigate to transaction lists fragment
-        setupActionBarWithNavController(findNavController(R.id.transactionListFragment))
-    }
-
-    // set navigate up action
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.transactionListFragment)
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        // set up toolbar
+        val toolbar = findViewById<Toolbar>(R.id.navbar)
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+        val navController = findNavController(R.id.navHostFragment)
+        // top-level destinations are the screen in toolbar (transaction list and categories list)
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.transactionListsFragment, R.id.categoryListsFragment), drawerLayout)
+        toolbar.setupWithNavController(navController, appBarConfiguration)
+        // set up menu navigation
+        val navigationView : NavigationView = findViewById(R.id.nav);
+        NavigationUI.setupWithNavController(navigationView, navController)
     }
 }
