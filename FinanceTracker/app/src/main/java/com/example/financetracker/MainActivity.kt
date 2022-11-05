@@ -1,7 +1,6 @@
 package com.example.financetracker
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -10,18 +9,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import com.example.financetracker.data.model.Currency
+import com.example.financetracker.data.api.APIViewModel
 import com.example.financetracker.data.viewmodel.CurrencyViewModel
 import com.google.android.material.navigation.NavigationView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import org.json.JSONObject
-import java.net.URL
 
-
+const val API = "https://api.currencyapi.com/v3/latest?apikey=bXhCXWPbFh1ghBuCcmXg7IYE37lJJoZUn2E8Gzzn&currencies=EUR%2CAUD%2CVND"
 class MainActivity : AppCompatActivity() {
     private lateinit var currencyVM: CurrencyViewModel
+    private lateinit var apiVM: APIViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,47 +39,12 @@ class MainActivity : AppCompatActivity() {
         val navigationView : NavigationView = findViewById(R.id.nav)
         NavigationUI.setupWithNavController(navigationView, navController)
 
+        // get currency api when the app starts
+        apiVM = ViewModelProvider(this)[APIViewModel::class.java]
+        val data = apiVM.getCurrencyData()
+
+        // update currency data to database
         currencyVM = ViewModelProvider(this)[CurrencyViewModel::class.java]
-
-        // get currency api
-        getCurrencyData()
+        currencyVM.updateCurrency(data)
     }
-
-    private fun getCurrencyData() {
-        val API = "https://api.currencyapi.com/v3/latest?apikey=bXhCXWPbFh1ghBuCcmXg7IYE37lJJoZUn2E8Gzzn&currencies=EUR%2CAUD%2CVND"
-        GlobalScope.launch(Dispatchers.IO) {
-            try {
-                // get the jsonObject from the API
-                val apiResult = URL(API).readText()
-                val jsonObject = JSONObject(apiResult).getJSONObject("data")
-
-                // check if the default code has been in the database
-                if (!currencyVM.hasCurrency("USD")) {
-                    // if not existed, add it
-                    currencyVM.addCurrency(Currency("USD", 1.0))
-                }
-
-                for (key in jsonObject.keys()) {
-                    val data = jsonObject.getJSONObject(key)
-                    // Get the code and value of the data
-                    val code = data.getString("code")
-                    val value = data.getDouble("value")
-                    val currency = Currency(code, value)
-
-                    // Check if the currency code has existed in the database
-                    if (currencyVM.hasCurrency(code)) {
-                        // if yes, update the currency
-                        currencyVM.updateCurrency(currency)
-                    }
-                    else {
-                        // else, add the currency
-                        currencyVM.addCurrency(currency)
-                    }
-                }
-            } catch (e: Exception) {
-                Log.e("DetectException", "$e")
-            }
-        }
-    }
-
 }
