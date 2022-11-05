@@ -14,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.financetracker.R
+import com.example.financetracker.data.api.DEFAULT_CURRENCY
+import com.example.financetracker.data.api.DEFAULT_VALUE
 import com.example.financetracker.data.viewmodel.TransactionViewModel
 
 class TransactionListsFragment : Fragment() {
@@ -25,8 +27,8 @@ class TransactionListsFragment : Fragment() {
     ): View? {
         // get settings
         val prefs = activity?.getSharedPreferences("settings", Context.MODE_PRIVATE)
-        val currencyCode = prefs?.getString("currency_code", "USD").toString()
-        val currencyValue = prefs?.getString("currency_value", "1")?.toFloat()
+        val currencyCode = prefs?.getString("currency_code", DEFAULT_CURRENCY).toString()
+        val currencyValue = prefs?.getString("currency_value", DEFAULT_VALUE)?.toFloat()
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_transaction_lists, container, false)

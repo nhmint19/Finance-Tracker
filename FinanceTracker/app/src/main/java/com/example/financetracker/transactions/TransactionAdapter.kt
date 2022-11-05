@@ -10,6 +10,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.financetracker.R
+import com.example.financetracker.data.api.DEFAULT_CURRENCY
+import com.example.financetracker.data.api.DEFAULT_VALUE
 import com.example.financetracker.data.model.Transaction
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -45,8 +47,8 @@ class TransactionAdapter: RecyclerView.Adapter<TransactionAdapter.ViewHolder>() 
         fun bind(item: Transaction) {
             // get settings
             val prefs = itemView.context.getSharedPreferences("settings", Context.MODE_PRIVATE)
-            val currencyCode = prefs?.getString("currency_code", "USD").toString()
-            val currencyValue = prefs?.getString("currency_value", "1")?.toFloat()
+            val currencyCode = prefs?.getString("currency_code", DEFAULT_CURRENCY).toString()
+            val currencyValue = prefs?.getString("currency_value", DEFAULT_VALUE)?.toFloat()
 
             nameView.text = item.name
             try {

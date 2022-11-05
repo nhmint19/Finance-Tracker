@@ -9,14 +9,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import com.example.financetracker.data.api.APIViewModel
 import com.example.financetracker.data.viewmodel.CurrencyViewModel
 import com.google.android.material.navigation.NavigationView
 
-const val API = "https://api.currencyapi.com/v3/latest?apikey=bXhCXWPbFh1ghBuCcmXg7IYE37lJJoZUn2E8Gzzn&currencies=EUR%2CAUD%2CVND"
 class MainActivity : AppCompatActivity() {
     private lateinit var currencyVM: CurrencyViewModel
-    private lateinit var apiVM: APIViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +36,8 @@ class MainActivity : AppCompatActivity() {
         val navigationView : NavigationView = findViewById(R.id.nav)
         NavigationUI.setupWithNavController(navigationView, navController)
 
-        // get currency api when the app starts
-        apiVM = ViewModelProvider(this)[APIViewModel::class.java]
-        val data = apiVM.getCurrencyData()
-
-        // update currency data to database
+        // update currency data to database at the start of the app
         currencyVM = ViewModelProvider(this)[CurrencyViewModel::class.java]
-        currencyVM.updateCurrency(data)
+        currencyVM.updateCurrencyFromAPI()
     }
 }

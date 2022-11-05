@@ -14,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.financetracker.R
+import com.example.financetracker.data.api.DEFAULT_CURRENCY
+import com.example.financetracker.data.api.DEFAULT_VALUE
 import com.example.financetracker.data.model.Category
 import com.example.financetracker.data.model.Transaction
 import com.example.financetracker.data.viewmodel.CategoryViewModel
@@ -35,8 +37,8 @@ class UpdateTransactionFragment : Fragment() {
     ): View? {
         // get settings
         val prefs = activity?.getSharedPreferences("settings", Context.MODE_PRIVATE)
-        val currencyCode = prefs?.getString("currency_code", "USD").toString()
-        val currencyValue = prefs?.getString("currency_value", "1")?.toFloat()
+        val currencyCode = prefs?.getString("currency_code", DEFAULT_CURRENCY).toString()
+        val currencyValue = prefs?.getString("currency_value", DEFAULT_VALUE)?.toFloat()
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_update_transaction, container, false)
@@ -125,10 +127,15 @@ class UpdateTransactionFragment : Fragment() {
         categoryVM.readAllCategories.observe(viewLifecycleOwner) { categoryList ->
             run {
                 categories = categoryList
+                val categoriesNames = mutableListOf<String>()
+                for (category in categories) {
+                    categoriesNames.add(category.name)
+                }
+                categoriesNames.add("Other")
                 val adapter = ArrayAdapter(
                     requireContext(),
                     R.layout.dropdown_category,
-                    categories.map { category -> category.name })
+                    categoriesNames)
                 view.findViewById<AutoCompleteTextView>(R.id.category_edit).setAdapter(adapter)
             }
         }
@@ -149,9 +156,9 @@ class UpdateTransactionFragment : Fragment() {
         // create date picker dialog
         val datePickerDialog = DatePickerDialog(
             requireContext(),
-            { _, year, monthOfYear, dayOfMonth ->
+            { _, _year, monthOfYear, dayOfMonth ->
                 // set date
-                val dat = (dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year)
+                val dat = (dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + _year)
                 view.setText(dat)
             },
             year,

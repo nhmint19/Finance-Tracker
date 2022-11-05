@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.financetracker.R
+import com.example.financetracker.data.api.DEFAULT_CURRENCY
 import com.example.financetracker.data.model.Currency
 import com.example.financetracker.data.viewmodel.CurrencyViewModel
 
@@ -38,7 +39,7 @@ class CurrencyFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 spinner.adapter = adapter
                 // set the current setting
                 val pref = this.activity?.getSharedPreferences("settings", Context.MODE_PRIVATE)
-                spinner.setSelection(adapter.getPosition(pref?.getString("currency_code", "USD")))
+                spinner.setSelection(adapter.getPosition(pref?.getString("currency_code", DEFAULT_CURRENCY)))
             }
         }
 
@@ -51,7 +52,7 @@ class CurrencyFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val selectedCode = parent.getItemAtPosition(pos).toString()
         val selectedValue = currencies.find { currency -> currency.code == selectedCode }?.value
         // update the text view
-        parent.rootView.findViewById<TextView>(R.id.currency_setting_text).text = "$selectedCode = ${selectedValue} x USD"
+        parent.rootView.findViewById<TextView>(R.id.currency_setting_text).text = "$selectedCode = $selectedValue x $DEFAULT_CURRENCY"
         // add the settings to shared preferences
         val sharedPref = this.activity?.getSharedPreferences(
             "settings",
