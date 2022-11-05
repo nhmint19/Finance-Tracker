@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.financetracker.CategoryAdapter
 import com.example.financetracker.R
 import com.example.financetracker.data.viewmodel.CategoryViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton

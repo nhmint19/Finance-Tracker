@@ -1,4 +1,4 @@
-package com.example.financetracker
+package com.example.financetracker.categories
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.financetracker.categories.CategoryListsFragmentDirections
+import com.example.financetracker.R
 import com.example.financetracker.data.model.Category
 
 class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {

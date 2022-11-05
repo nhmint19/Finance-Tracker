@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.financetracker.R
-import com.example.financetracker.TransactionAdapter
 import com.example.financetracker.data.viewmodel.TransactionViewModel
 
 class TransactionListsFragment : Fragment() {

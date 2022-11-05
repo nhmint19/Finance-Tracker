@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/exportFragment"
-        android:name="com.example.financetracker.ExportFragment"
+        android:name="com.example.financetracker.export.ExportFragment"
         android:label="fragment_export"
         tools:layout="@layout/fragment_export" />
     <fragment

@@ -1,4 +1,4 @@
-package com.example.financetracker
+package com.example.financetracker.transactions
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.financetracker.R
 import com.example.financetracker.data.model.Transaction
-import com.example.financetracker.transactions.TransactionListsFragmentDirections
 import java.text.ParseException
 import java.text.SimpleDateFormat
 
