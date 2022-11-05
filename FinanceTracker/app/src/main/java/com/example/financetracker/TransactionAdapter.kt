@@ -1,5 +1,6 @@
 package com.example.financetracker
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.financetracker.data.model.Transaction
-import com.example.financetracker.transactions.read.TransactionListsFragmentDirections
+import com.example.financetracker.transactions.TransactionListsFragmentDirections
 import java.text.ParseException
 import java.text.SimpleDateFormat
 
@@ -35,31 +36,37 @@ class TransactionAdapter: RecyclerView.Adapter<TransactionAdapter.ViewHolder>() 
         holder.bind(item)
     }
 
-    inner class ViewHolder(val v: View): RecyclerView.ViewHolder(v) {
+    inner class ViewHolder(private val v: View): RecyclerView.ViewHolder(v) {
         private val nameView = v.findViewById<TextView>(R.id.name)
         private val dateView = v.findViewById<TextView>(R.id.date)
         private val categoryView = v.findViewById<TextView>(R.id.category)
         private val amountView = v.findViewById<TextView>(R.id.amount)
 
         fun bind(item: Transaction) {
+            // get settings
+            val prefs = itemView.context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+            val currencyCode = prefs?.getString("currency_code", "USD").toString()
+            val currencyValue = prefs?.getString("currency_value", "1")?.toFloat()
+
             nameView.text = item.name
             try {
                 dateView.text = dateFormat.format(item.date)
             } catch (e: ParseException)
             {
                 e.printStackTrace()
-                dateView.text = "Unidentified"
             }
             categoryView.text = item.category
 
             // determine type of transaction through amount
+            val txt: String
             if (item.amount > 0) {
-                amountView.text = "$${item.amount.toString()}"
+                txt = "$currencyCode ${String.format("%.2f", item.amount * currencyValue!!)}"
                 amountView.setTextColor(ResourcesCompat.getColor(v.resources, R.color.green, null))
             } else {
-                amountView.text = "-$${(-(item.amount)).toString()}"
+                txt = "-${currencyCode} ${String.format("%.2f", -(item.amount * currencyValue!!))}"
                 amountView.setTextColor(ResourcesCompat.getColor(v.resources, R.color.red, null))
             }
+            amountView.text = txt
 
             // click a transaction to open the update screen
             v.findViewById<LinearLayout>(R.id.transaction_layout).setOnClickListener {

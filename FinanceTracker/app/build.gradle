@@ -73,4 +73,14 @@ dependencies {
 
     // Color Picker
     implementation "com.github.yukuku:ambilwarna:2.0.1"
+
+    // Apache POI for excel
+    implementation "com.github.SUPERCILEX.poi-android:poi:3.17"
+    compileOnly 'org.apache.poi:poi-ooxml:3.17'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+
+    // Gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 }

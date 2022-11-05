@@ -10,7 +10,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.financetracker.categories.CategoryListsFragmentDirections
 import com.example.financetracker.data.model.Category
-import com.example.financetracker.transactions.read.TransactionListsFragmentDirections
 
 class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     private var categories = emptyList<Category>()
@@ -31,7 +30,7 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
         holder.bind(item)
     }
 
-    inner class ViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
+    inner class ViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
         private val nameView = v.findViewById<TextView>(R.id.category_name)
         private val colorView = v.findViewById<TextView>(R.id.category_color)
 

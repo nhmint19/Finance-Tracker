@@ -6,7 +6,7 @@
     app:startDestination="@id/transactionListsFragment">
     <fragment
         android:id="@+id/transactionListsFragment"
-        android:name="com.example.financetracker.transactions.read.TransactionListsFragment"
+        android:name="com.example.financetracker.transactions.TransactionListsFragment"
         android:label="ListTransactionFragment"
         tools:layout="@layout/fragment_transaction_lists" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/addTransactionFragment"
-        android:name="com.example.financetracker.transactions.create.AddTransactionFragment"
+        android:name="com.example.financetracker.transactions.AddTransactionFragment"
         android:label="AddTransactionFragment"
         tools:layout="@layout/fragment_add_transaction" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateTransactionFragment"
-        android:name="com.example.financetracker.transactions.update.UpdateTransactionFragment"
+        android:name="com.example.financetracker.transactions.UpdateTransactionFragment"
         android:label="UpdateTransactionFragment" >
         <action
             android:id="@+id/action_updateTransactionFragment_to_transactionListsFragment"
@@ -67,4 +67,14 @@
             android:name="curCategory"
             app:argType="com.example.financetracker.data.model.Category" />
     </fragment>
+    <fragment
+        android:id="@+id/exportFragment"
+        android:name="com.example.financetracker.ExportFragment"
+        android:label="fragment_export"
+        tools:layout="@layout/fragment_export" />
+    <fragment
+        android:id="@+id/currencyFragment"
+        android:name="com.example.financetracker.currency.CurrencyFragment"
+        android:label="fragment_currency"
+        tools:layout="@layout/fragment_currency" />
 </navigation>

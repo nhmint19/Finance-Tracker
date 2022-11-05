@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".transactions.create.AddTransactionFragment"
+    tools:context=".categories.UpdateCategoryFragment"
     android:orientation="vertical"
     >
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update Category"
+        android:text="@string/update_category"
         android:textAlignment="center"
-        android:textSize="30dp"
+        android:textSize="25sp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         />
@@ -23,7 +23,7 @@
         android:layout_marginEnd="20dp"
         >
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="10dp"
@@ -32,9 +32,9 @@
                 android:id="@+id/category_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:textSize="20sp"
                 android:backgroundTint="#fff"
-                android:hint="Name"
+                android:hint="@string/name"
                 android:inputType="text"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -63,15 +63,15 @@
         android:layout_gravity="center"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="UPDATE"
+        android:text="@string/update_button"
         android:textColor="#000"
-        android:textSize="20dp"
+        android:textSize="15sp"
         android:padding="10dp"
         android:shadowRadius="2"
         android:shadowDx="4"
         android:shadowDy="4"
         android:layout_weight="0.5"
-        />
+        style="?android:attr/buttonBarButtonStyle" />
     <Button
         android:id="@+id/delete_category_btn"
         android:layout_width="wrap_content"
@@ -80,14 +80,14 @@
         android:layout_gravity="center"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="DELETE"
+        android:text="@string/delete_button"
         android:textColor="#000"
-        android:textSize="20dp"
+        android:textSize="15sp"
         android:padding="10dp"
         android:shadowRadius="2"
         android:shadowDx="4"
         android:shadowDy="4"
         android:layout_weight="0.5"
-        />
+        style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
 </LinearLayout>

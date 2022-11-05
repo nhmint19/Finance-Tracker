@@ -8,15 +8,15 @@ import com.example.financetracker.data.model.Transaction
 class TransactionRepository(private val transactionDao: TransactionDAO) {
     val readAllTransactions: LiveData<List<Transaction>> = transactionDao.readAllTransactions()
 
-    suspend fun addTransaction(transaction: Transaction) {
+    fun addTransaction(transaction: Transaction) {
         transactionDao.addTransaction(transaction)
     }
 
-    suspend fun updateTransaction(transaction: Transaction) {
+    fun updateTransaction(transaction: Transaction) {
         transactionDao.updateTransaction(transaction)
     }
 
-    suspend fun deleteTransaction(transaction: Transaction) {
+    fun deleteTransaction(transaction: Transaction) {
         transactionDao.deleteTransaction(transaction)
     }
 }

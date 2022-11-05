@@ -1,15 +1,15 @@
-package com.example.financetracker.transactions.update
+package com.example.financetracker.transactions
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -33,6 +33,11 @@ class UpdateTransactionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // get settings
+        val prefs = activity?.getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val currencyCode = prefs?.getString("currency_code", "USD").toString()
+        val currencyValue = prefs?.getString("currency_value", "1")?.toFloat()
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_update_transaction, container, false)
 
@@ -47,11 +52,14 @@ class UpdateTransactionFragment : Fragment() {
             val amountView = it.findViewById<TextInputEditText>(R.id.amount_edit)
             val dateFormat = SimpleDateFormat("dd/MM/yyyy")
 
+            // update the currency text
+            view.findViewById<TextView>(R.id.amount_edit_currency).text = currencyCode
+
             // preset fields for update screen
             nameView.setText(args.curTransaction.name)
             categoryView.setText(args.curTransaction.category)
             dateView.setText(dateFormat.format(args.curTransaction.date))
-            amountView.setText(abs(args.curTransaction.amount).toString())
+            amountView.setText(abs(args.curTransaction.amount * currencyValue!!).toString())
             if (args.curTransaction.amount > 0) {
                 it.findViewById<RadioButton>(R.id.radio_income).isChecked = true
             } else {
@@ -84,12 +92,12 @@ class UpdateTransactionFragment : Fragment() {
                     amountView.error = "Please select a type of transaction"
                 else
                 {
-                    val date = dateFormat.parse(dateView.text.toString()).time
+                    val date = dateFormat.parse(dateView.text.toString())!!.time
                     val amount = getAmountFromType(
                         view,
                         amountView.text.toString().toFloat()
                     )
-                    val transaction = Transaction(args.curTransaction.id, name, date, amount, category)
+                    val transaction = Transaction(args.curTransaction.id, name, date, amount / currencyValue, category)
                     transactionVM.updateTransaction(transaction)
                     Toast.makeText(requireContext(), "Updated transaction successfully!", Toast.LENGTH_LONG).show()
                     findNavController().navigate(R.id.action_updateTransactionFragment_to_transactionListsFragment)
@@ -98,8 +106,8 @@ class UpdateTransactionFragment : Fragment() {
 
             // set listener for delete button
             it.findViewById<Button>(R.id.delete_btn).setOnClickListener {
-                // create a cofirmation dialog
-                var alertDialog = AlertDialog.Builder(requireContext())
+                // create a confirmation dialog
+                val alertDialog = AlertDialog.Builder(requireContext())
                 alertDialog.setTitle("Delete ${args.curTransaction.name}?")
                 alertDialog.setMessage("Are you sure you want to delete ${args.curTransaction.name}?")
                 alertDialog.setPositiveButton("Yes") {_, _ ->
@@ -114,14 +122,16 @@ class UpdateTransactionFragment : Fragment() {
 
         // Category drop down
         categoryVM = ViewModelProvider(this)[CategoryViewModel::class.java]
-        categoryVM.readAllCategories.observe(viewLifecycleOwner, Observer {
-                categoryList ->
+        categoryVM.readAllCategories.observe(viewLifecycleOwner) { categoryList ->
             run {
                 categories = categoryList
-                val adapter = ArrayAdapter( requireContext(), R.layout.dropdown_category, categories.map { category -> category.name})
+                val adapter = ArrayAdapter(
+                    requireContext(),
+                    R.layout.dropdown_category,
+                    categories.map { category -> category.name })
                 view.findViewById<AutoCompleteTextView>(R.id.category_edit).setAdapter(adapter)
             }
-        })
+        }
 
         return view
     }

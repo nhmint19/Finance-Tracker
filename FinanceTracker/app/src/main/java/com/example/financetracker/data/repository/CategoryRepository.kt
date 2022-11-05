@@ -8,15 +8,15 @@ import com.example.financetracker.data.model.Category
 class CategoryRepository(private val categoryDao: CategoryDAO) {
     val readAllCategories: LiveData<List<Category>> = categoryDao.readAllCategories()
 
-    suspend fun addCategory(category: Category) {
+    fun addCategory(category: Category) {
         categoryDao.addCategory(category)
     }
 
-    suspend fun updateCategory(category: Category) {
+    fun updateCategory(category: Category) {
         categoryDao.updateCategory(category)
     }
 
-    suspend fun deleteCategory(category: Category) {
+    fun deleteCategory(category: Category) {
         categoryDao.deleteCategory(category)
     }
 }

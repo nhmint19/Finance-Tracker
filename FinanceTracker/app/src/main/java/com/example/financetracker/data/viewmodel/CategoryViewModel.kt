@@ -6,9 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.financetracker.data.FTDatabase
 import com.example.financetracker.data.model.Category
-import com.example.financetracker.data.model.Transaction
 import com.example.financetracker.data.repository.CategoryRepository
-import com.example.financetracker.data.repository.TransactionRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

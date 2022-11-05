@@ -4,4 +4,14 @@
         android:title="Transactions" />
     <item android:id="@+id/categoryListsFragment"
         android:title="Categories" />
+    <item android:id="@+id/exportFragment"
+        android:title="Export" />
+    <item android:title="Settings" >
+        <menu>
+            <item
+                android:id="@+id/currencyFragment"
+                android:title="Currency"
+                />
+        </menu>
+    </item>
 </menu>

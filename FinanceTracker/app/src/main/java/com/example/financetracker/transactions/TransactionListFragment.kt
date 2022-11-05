@@ -1,28 +1,21 @@
-package com.example.financetracker.transactions.read
+package com.example.financetracker.transactions
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.financetracker.CategoryDropdownAdapter
 import com.example.financetracker.R
 import com.example.financetracker.TransactionAdapter
-import com.example.financetracker.data.model.Category
-import com.example.financetracker.data.model.Transaction
-import com.example.financetracker.data.viewmodel.CategoryViewModel
 import com.example.financetracker.data.viewmodel.TransactionViewModel
-import com.example.financetracker.databinding.FragmentTransactionListsBinding
 
 class TransactionListsFragment : Fragment() {
     private lateinit var transactionVM : TransactionViewModel
@@ -31,6 +24,11 @@ class TransactionListsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // get settings
+        val prefs = activity?.getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val currencyCode = prefs?.getString("currency_code", "USD").toString()
+        val currencyValue = prefs?.getString("currency_value", "1")?.toFloat()
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_transaction_lists, container, false)
         val totalView = view.findViewById<TextView>(R.id.total)
@@ -45,20 +43,46 @@ class TransactionListsFragment : Fragment() {
 
         // TransactionVM
         transactionVM = ViewModelProvider(this)[TransactionViewModel::class.java]
-        transactionVM.readAllTransactions.observe(viewLifecycleOwner, Observer {
-            transaction -> adapter.setData(transaction)
+        transactionVM.readAllTransactions.observe(viewLifecycleOwner) { transaction ->
+            adapter.setData(transaction)
             // set text for expense, income and saving total
             val (expense, income, total) = adapter.calculateTotal()
             if (total >= 0) {
-                totalView.text = "${totalView.text}\n$${total}"
-                totalView.setTextColor(ResourcesCompat.getColor(view.resources, R.color.green, null))
+                totalView.text = "${totalView.text}\n${currencyCode} ${
+                    String.format(
+                        "%.2f",
+                        total * currencyValue!!
+                    )
+                }"
+                totalView.setTextColor(
+                    ResourcesCompat.getColor(
+                        view.resources,
+                        R.color.green,
+                        null
+                    )
+                )
             } else {
-                totalView.text = "${totalView.text}\n-$${-total}"
+                totalView.text = "${totalView.text}\n-${currencyCode} ${
+                    String.format(
+                        "%.2f",
+                        -total * currencyValue!!
+                    )
+                }"
                 totalView.setTextColor(ResourcesCompat.getColor(view.resources, R.color.red, null))
             }
-            expenseView.text = "${expenseView.text}\n$${expense}"
-            incomeView.text = "${incomeView.text}\n$${income}"
-        })
+            expenseView.text = "${expenseView.text}\n${currencyCode} ${
+                String.format(
+                    "%.2f",
+                    expense * currencyValue
+                )
+            }"
+            incomeView.text = "${incomeView.text}\n${currencyCode} ${
+                String.format(
+                    "%.2f",
+                    income * currencyValue
+                )
+            }"
+        }
 
         // set listener to add icon
         view.findViewById<ImageView>(R.id.ic_add_transactions).setOnClickListener {

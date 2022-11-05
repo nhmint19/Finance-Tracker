@@ -1,10 +1,27 @@
 <resources>
-    <string name="app_name">FinanceTracker</string>
+    <string name="app_name">Finance Tracker</string>
     <string name="title_activity_main">MainActivity</string>
-    <!--    Main activity strings    -->
     <string name="total">TOTAL</string>
     <string name="expense">EXPENSE</string>
     <string name="income">INCOME</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="category">Category</string>
+    <string name="add_category">Add Category</string>
+    <string name="name">Name</string>
+    <string name="add_button">ADD</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="expense_button">Expense</string>
+    <string name="income_button">Income</string>
+    <string name="date">Date</string>
+    <string name="currency_default">USD</string>
+    <string name="amount">Amount</string>
+    <string name="currency_setting">Currency Setting</string>
+    <string name="export_instruction">Click the below button to export and share transactions using other applications</string>
+    <string name="export">Export</string>
+    <string name="add_transactions">Add Transactions</string>
+    <string name="update_category">Update Category</string>
+    <string name="update_button">UPDATE</string>
+    <string name="delete_button">DELETE</string>
+    <string name="update_transaction">Update Transaction</string>
+    <string name="multiply">x</string>
+    <string name="equal">=</string>
 </resources>

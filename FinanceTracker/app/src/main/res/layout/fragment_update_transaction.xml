@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".transactions.create.AddTransactionFragment"
+    tools:context=".transactions.UpdateTransactionFragment"
     android:orientation="vertical"
     >
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update Transaction"
+        android:text="@string/update_transaction"
         android:textAlignment="center"
-        android:textSize="30dp"
+        android:textSize="25sp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         />
@@ -32,9 +32,9 @@
                 android:id="@+id/radio_expense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Expense"
+                android:text="@string/expense_button"
                 android:textColor="@color/red"
-                android:textSize="25dp"
+                android:textSize="20sp"
                 android:layout_weight="1"
                 android:layout_marginStart="10dp"
                 android:buttonTint="@color/primary"
@@ -43,9 +43,9 @@
                 android:id="@+id/radio_income"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Income"
+                android:text="@string/income_button"
                 android:textColor="@color/green"
-                android:textSize="25dp"
+                android:textSize="20sp"
                 android:layout_weight="1"
                 android:layout_marginStart="10dp"
                 android:buttonTint="@color/primary"
@@ -60,9 +60,9 @@
                 android:id="@+id/name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:textSize="20sp"
                 android:backgroundTint="#fff"
-                android:hint="Name"
+                android:hint="@string/name"
                 android:inputType="text"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -76,9 +76,9 @@
                 android:id="@+id/category_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:textSize="20sp"
                 android:backgroundTint="#fff"
-                android:hint="Category"
+                android:hint="@string/category"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
@@ -94,29 +94,45 @@
                 android:id="@+id/date_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:textSize="20sp"
                 android:backgroundTint="#fff"
-                android:hint="Date"
+                android:hint="@string/date"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/amount_edit"
+            <TextView
+                android:id="@+id/amount_edit_currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/currency_default"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                />
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:inputType="numberDecimal"
-                android:backgroundTint="#fff"
-                android:hint="Amount"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/amount_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:inputType="numberDecimal"
+                    android:backgroundTint="#fff"
+                    android:hint="@string/amount"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -134,15 +150,15 @@
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:text="UPDATE"
+            android:text="@string/update_button"
             android:textColor="#000"
-            android:textSize="20dp"
+            android:textSize="15sp"
             android:padding="10dp"
             android:shadowRadius="2"
             android:shadowDx="4"
             android:shadowDy="4"
             android:layout_weight="0.5"
-            />
+            style="?android:attr/buttonBarButtonStyle" />
         <Button
             android:id="@+id/delete_btn"
             android:layout_width="wrap_content"
@@ -151,16 +167,16 @@
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:text="DELETE"
+            android:text="@string/delete_button"
             android:textColor="#000"
-            android:textSize="20dp"
+            android:textSize="15sp"
             android:padding="10dp"
             android:shadowRadius="2"
             android:shadowDx="4"
             android:shadowDy="4"
             android:layout_weight="0.5"
 
-            />
+            style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
 
 

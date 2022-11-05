@@ -1,6 +1,7 @@
-package com.example.financetracker.transactions.create
+package com.example.financetracker.transactions
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -8,10 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.financetracker.CategoryDropdownAdapter
 import com.example.financetracker.R
 import com.example.financetracker.data.model.Category
 import com.example.financetracker.data.model.Transaction
@@ -20,7 +19,6 @@ import com.example.financetracker.data.viewmodel.TransactionViewModel
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 class AddTransactionFragment : Fragment() {
     private lateinit var transactionVM: TransactionViewModel
@@ -31,6 +29,11 @@ class AddTransactionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // get settings
+        val prefs = activity?.getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val currencyCode = prefs?.getString("currency_code", "USD").toString()
+        val currencyValue = prefs?.getString("currency_value", "1")?.toFloat()
+
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_add_transaction, container, false)
 
@@ -38,6 +41,9 @@ class AddTransactionFragment : Fragment() {
         val categoryView = view.findViewById<AutoCompleteTextView>(R.id.category_add)
         val dateView = view.findViewById<TextInputEditText>(R.id.date_add)
         val amountView = view.findViewById<TextInputEditText>(R.id.amount_add)
+
+        // update the currency text
+        view.findViewById<TextView>(R.id.amount_add_currency).text = currencyCode
 
         // get transaction view model
         transactionVM = ViewModelProvider(this)[TransactionViewModel::class.java]
@@ -71,12 +77,12 @@ class AddTransactionFragment : Fragment() {
                 amountView.error = "Please select a type of transaction"
             else
             {
-                var date = dateFormat.parse(dateView.text.toString()).time
+                val date = dateFormat.parse(dateView.text.toString())!!.time
                 val amount = getAmountFromType(
                     view,
                     amountView.text.toString().toFloat()
                 )
-                val transaction = Transaction(0, name, date, amount, category)
+                val transaction = Transaction(0, name, date, amount / currencyValue!!, category)
                 transactionVM.addTransaction(transaction)
                 Toast.makeText(requireContext(), "Added transaction successfully!", Toast.LENGTH_LONG).show()
                 findNavController().navigate(R.id.action_addTransactionFragment_to_transactionListsFragment)
@@ -85,14 +91,16 @@ class AddTransactionFragment : Fragment() {
 
         // Category drop down
         categoryVM = ViewModelProvider(this)[CategoryViewModel::class.java]
-        categoryVM.readAllCategories.observe(viewLifecycleOwner, Observer {
-            categoryList ->
+        categoryVM.readAllCategories.observe(viewLifecycleOwner) { categoryList ->
             run {
                 categories = categoryList
-                val adapter = ArrayAdapter( requireContext(), R.layout.dropdown_category, categories.map { category -> category.name})
+                val adapter = ArrayAdapter(
+                    requireContext(),
+                    R.layout.dropdown_category,
+                    categories.map { category -> category.name })
                 view.findViewById<AutoCompleteTextView>(R.id.category_add).setAdapter(adapter)
             }
-        })
+        }
         return view
     }
 

@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
@@ -19,14 +18,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.financetracker.R
 import com.example.financetracker.data.model.Category
-import com.example.financetracker.data.model.Transaction
 import com.example.financetracker.data.viewmodel.CategoryViewModel
-import com.example.financetracker.data.viewmodel.TransactionViewModel
-import com.example.financetracker.transactions.update.UpdateTransactionFragmentArgs
 import com.google.android.material.textfield.TextInputEditText
 import yuku.ambilwarna.AmbilWarnaDialog
-import java.text.SimpleDateFormat
-import kotlin.math.abs
 
 class UpdateCategoryFragment : Fragment() {
     private lateinit var categoryVM: CategoryViewModel
@@ -75,7 +69,7 @@ class UpdateCategoryFragment : Fragment() {
             // set listener for delete button
             it.findViewById<Button>(R.id.delete_category_btn).setOnClickListener {
                 // create a confirmation dialog
-                var alertDialog = AlertDialog.Builder(requireContext())
+                val alertDialog = AlertDialog.Builder(requireContext())
                 alertDialog.setTitle("Delete ${args.curCategory.name}?")
                 alertDialog.setMessage("Are you sure you want to delete ${args.curCategory.name}?")
                 alertDialog.setPositiveButton("Yes") {_, _ ->

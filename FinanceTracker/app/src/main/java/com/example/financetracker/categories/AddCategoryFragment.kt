@@ -1,6 +1,5 @@
 package com.example.financetracker.categories
 
-import android.R.color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.TextUtils

@@ -1,11 +1,10 @@
 package com.example.financetracker.categories
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,9 +32,9 @@ class CategoryListsFragment : Fragment() {
 
         // CategoryVM
         categoryVM = ViewModelProvider(this)[CategoryViewModel::class.java]
-        categoryVM.readAllCategories.observe(viewLifecycleOwner, Observer {
-                category-> adapter.setData(category)
-        })
+        categoryVM.readAllCategories.observe(viewLifecycleOwner) { category ->
+            adapter.setData(category)
+        }
 
         // set up listen to float action button
         view.findViewById<FloatingActionButton>(R.id.ic_add_category).setOnClickListener {

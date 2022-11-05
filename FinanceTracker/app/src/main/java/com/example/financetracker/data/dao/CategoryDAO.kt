@@ -3,12 +3,11 @@ package com.example.financetracker.data.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.financetracker.data.model.Category
-import com.example.financetracker.data.model.Transaction
 
 // DAO to interact with the database
 @Dao
 interface CategoryDAO {
-    // Add a new transaction
+    // Add a new category
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addCategory(category: Category)
 
@@ -16,11 +15,11 @@ interface CategoryDAO {
     @Query("SELECT * FROM category_table ORDER BY id DESC")
     fun readAllCategories(): LiveData<List<Category>>
 
-    // Update an existing transaction
+    // Update an existing category
     @Update
     fun updateCategory(category: Category)
 
-    // Delete an existing transaction
+    // Delete an existing category
     @Delete
     fun deleteCategory(category: Category)
 }
