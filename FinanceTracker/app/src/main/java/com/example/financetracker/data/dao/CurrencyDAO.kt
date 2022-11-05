@@ -2,7 +2,7 @@ package com.example.financetracker.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.financetracker.data.model.Currency
+import com.example.financetracker.model.Currency
 
 @Dao
 interface CurrencyDAO {

@@ -1,13 +1,13 @@
-package com.example.financetracker.data.viewmodel
+package com.example.financetracker.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.financetracker.data.FTDatabase
-import com.example.financetracker.data.api.CurrencyAPI
-import com.example.financetracker.data.model.Currency
-import com.example.financetracker.data.repository.CurrencyRepository
+import com.example.financetracker.api.CurrencyAPI
+import com.example.financetracker.model.Currency
+import com.example.financetracker.repository.CurrencyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

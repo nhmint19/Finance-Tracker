@@ -1,4 +1,4 @@
-package com.example.financetracker.categories
+package com.example.financetracker.view.categories
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.financetracker.R
-import com.example.financetracker.data.viewmodel.CategoryViewModel
+import com.example.financetracker.viewmodel.CategoryViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CategoryListsFragment : Fragment() {

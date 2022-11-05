@@ -1,8 +1,8 @@
-package com.example.financetracker.data.repository
+package com.example.financetracker.repository
 
 import androidx.lifecycle.LiveData
 import com.example.financetracker.data.dao.CategoryDAO
-import com.example.financetracker.data.model.Category
+import com.example.financetracker.model.Category
 
 // A repository class to access to the data resources
 class CategoryRepository(private val categoryDao: CategoryDAO) {

@@ -1,8 +1,8 @@
-package com.example.financetracker.data.repository
+package com.example.financetracker.repository
 
 import androidx.lifecycle.LiveData
 import com.example.financetracker.data.dao.CurrencyDAO
-import com.example.financetracker.data.model.Currency
+import com.example.financetracker.model.Currency
 
 // A repository class to access to the data resources
 class CurrencyRepository(private val currencyDao: CurrencyDAO) {

@@ -7,9 +7,9 @@ import androidx.room.RoomDatabase
 import com.example.financetracker.data.dao.CategoryDAO
 import com.example.financetracker.data.dao.CurrencyDAO
 import com.example.financetracker.data.dao.TransactionDAO
-import com.example.financetracker.data.model.Category
-import com.example.financetracker.data.model.Currency
-import com.example.financetracker.data.model.Transaction
+import com.example.financetracker.model.Category
+import com.example.financetracker.model.Currency
+import com.example.financetracker.model.Transaction
 
 @Database(entities = [Transaction::class, Category::class, Currency::class], version = 1, exportSchema = false)
 abstract class FTDatabase: RoomDatabase() {

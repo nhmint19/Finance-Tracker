@@ -6,7 +6,7 @@
     app:startDestination="@id/transactionListsFragment">
     <fragment
         android:id="@+id/transactionListsFragment"
-        android:name="com.example.financetracker.transactions.TransactionListsFragment"
+        android:name="com.example.financetracker.view.transactions.TransactionListsFragment"
         android:label="ListTransactionFragment"
         tools:layout="@layout/fragment_transaction_lists" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/addTransactionFragment"
-        android:name="com.example.financetracker.transactions.AddTransactionFragment"
+        android:name="com.example.financetracker.view.transactions.AddTransactionFragment"
         android:label="AddTransactionFragment"
         tools:layout="@layout/fragment_add_transaction" >
         <action
@@ -27,18 +27,18 @@
     </fragment>
     <fragment
         android:id="@+id/updateTransactionFragment"
-        android:name="com.example.financetracker.transactions.UpdateTransactionFragment"
+        android:name="com.example.financetracker.view.transactions.UpdateTransactionFragment"
         android:label="UpdateTransactionFragment" >
         <action
             android:id="@+id/action_updateTransactionFragment_to_transactionListsFragment"
             app:destination="@id/transactionListsFragment" />
         <argument
             android:name="curTransaction"
-            app:argType="com.example.financetracker.data.model.Transaction" />
+            app:argType="com.example.financetracker.model.Transaction" />
     </fragment>
     <fragment
         android:id="@+id/categoryListsFragment"
-        android:name="com.example.financetracker.categories.CategoryListsFragment"
+        android:name="com.example.financetracker.view.categories.CategoryListsFragment"
         android:label="ListCategoryFragment"
         tools:layout="@layout/fragment_category_lists" >
         <action
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/addCategoryFragment"
-        android:name="com.example.financetracker.categories.AddCategoryFragment"
+        android:name="com.example.financetracker.view.categories.AddCategoryFragment"
         android:label="AddCategoryFragment" >
         <action
             android:id="@+id/action_addCategoryFragment_to_categoryListsFragment"
@@ -58,23 +58,23 @@
     </fragment>
     <fragment
         android:id="@+id/updateCategoryFragment"
-        android:name="com.example.financetracker.categories.UpdateCategoryFragment"
+        android:name="com.example.financetracker.view.categories.UpdateCategoryFragment"
         android:label="UpdateCategoryFragment" >
         <action
             android:id="@+id/action_updateCategoryFragment_to_categoryListsFragment"
             app:destination="@id/categoryListsFragment" />
         <argument
             android:name="curCategory"
-            app:argType="com.example.financetracker.data.model.Category" />
+            app:argType="com.example.financetracker.model.Category" />
     </fragment>
     <fragment
         android:id="@+id/exportFragment"
-        android:name="com.example.financetracker.export.ExportFragment"
+        android:name="com.example.financetracker.view.export.ExportFragment"
         android:label="fragment_export"
         tools:layout="@layout/fragment_export" />
     <fragment
         android:id="@+id/currencyFragment"
-        android:name="com.example.financetracker.currency.CurrencyFragment"
+        android:name="com.example.financetracker.view.currency.CurrencyFragment"
         android:label="fragment_currency"
         tools:layout="@layout/fragment_currency" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.financetracker.transactions
+package com.example.financetracker.view.transactions
 
 import android.content.Context
 import android.os.Bundle
@@ -14,9 +14,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.financetracker.R
-import com.example.financetracker.data.api.DEFAULT_CURRENCY
-import com.example.financetracker.data.api.DEFAULT_VALUE
-import com.example.financetracker.data.viewmodel.TransactionViewModel
+import com.example.financetracker.api.DEFAULT_CURRENCY
+import com.example.financetracker.api.DEFAULT_VALUE
+import com.example.financetracker.viewmodel.TransactionViewModel
 
 class TransactionListsFragment : Fragment() {
     private lateinit var transactionVM : TransactionViewModel

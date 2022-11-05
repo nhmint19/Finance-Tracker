@@ -1,4 +1,4 @@
-package com.example.financetracker.transactions
+package com.example.financetracker.view.transactions
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.financetracker.R
-import com.example.financetracker.data.api.DEFAULT_CURRENCY
-import com.example.financetracker.data.api.DEFAULT_VALUE
-import com.example.financetracker.data.model.Transaction
+import com.example.financetracker.api.DEFAULT_CURRENCY
+import com.example.financetracker.api.DEFAULT_VALUE
+import com.example.financetracker.model.Transaction
 import java.text.ParseException
 import java.text.SimpleDateFormat
 

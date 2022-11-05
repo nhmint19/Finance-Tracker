@@ -1,4 +1,4 @@
-package com.example.financetracker.categories
+package com.example.financetracker.view.categories
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.financetracker.R
-import com.example.financetracker.data.model.Category
+import com.example.financetracker.model.Category
 
 class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     private var categories = emptyList<Category>()

@@ -1,4 +1,4 @@
-package com.example.financetracker.currency
+package com.example.financetracker.view.currency
 
 import android.content.Context
 import android.os.Bundle
@@ -12,9 +12,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.financetracker.R
-import com.example.financetracker.data.api.DEFAULT_CURRENCY
-import com.example.financetracker.data.model.Currency
-import com.example.financetracker.data.viewmodel.CurrencyViewModel
+import com.example.financetracker.api.DEFAULT_CURRENCY
+import com.example.financetracker.model.Currency
+import com.example.financetracker.viewmodel.CurrencyViewModel
 
 class CurrencyFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var currencyVM: CurrencyViewModel

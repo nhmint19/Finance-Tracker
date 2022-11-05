@@ -2,7 +2,7 @@ package com.example.financetracker.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.financetracker.data.model.Transaction
+import com.example.financetracker.model.Transaction
 
 // DAO to interact with the database
 @Dao

@@ -1,4 +1,4 @@
-package com.example.financetracker.export
+package com.example.financetracker.view.export
 
 import android.content.Intent
 import android.net.Uri
@@ -11,7 +11,7 @@ import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.financetracker.R
-import com.example.financetracker.data.viewmodel.TransactionViewModel
+import com.example.financetracker.viewmodel.TransactionViewModel
 import com.example.financetracker.utils.createExcel
 import com.example.financetracker.utils.getFileUri
 

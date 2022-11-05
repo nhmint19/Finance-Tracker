@@ -1,4 +1,4 @@
-package com.example.financetracker.data.api
+package com.example.financetracker.api
 import android.util.Log
 import org.json.JSONObject
 import java.net.URL

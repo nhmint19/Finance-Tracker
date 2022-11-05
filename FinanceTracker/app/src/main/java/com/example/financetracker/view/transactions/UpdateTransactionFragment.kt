@@ -1,4 +1,4 @@
-package com.example.financetracker.transactions
+package com.example.financetracker.view.transactions
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -14,12 +14,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.financetracker.R
-import com.example.financetracker.data.api.DEFAULT_CURRENCY
-import com.example.financetracker.data.api.DEFAULT_VALUE
-import com.example.financetracker.data.model.Category
-import com.example.financetracker.data.model.Transaction
-import com.example.financetracker.data.viewmodel.CategoryViewModel
-import com.example.financetracker.data.viewmodel.TransactionViewModel
+import com.example.financetracker.api.DEFAULT_CURRENCY
+import com.example.financetracker.api.DEFAULT_VALUE
+import com.example.financetracker.model.Category
+import com.example.financetracker.model.Transaction
+import com.example.financetracker.viewmodel.CategoryViewModel
+import com.example.financetracker.viewmodel.TransactionViewModel
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*

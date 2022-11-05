@@ -1,4 +1,4 @@
-package com.example.financetracker.categories
+package com.example.financetracker.view.categories
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.financetracker.R
-import com.example.financetracker.data.model.Category
-import com.example.financetracker.data.viewmodel.CategoryViewModel
+import com.example.financetracker.model.Category
+import com.example.financetracker.viewmodel.CategoryViewModel
 import com.google.android.material.textfield.TextInputEditText
 import yuku.ambilwarna.AmbilWarnaDialog
 
