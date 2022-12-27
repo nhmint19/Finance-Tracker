@@ -28,7 +28,8 @@
     <fragment
         android:id="@+id/updateTransactionFragment"
         android:name="com.example.financetracker.view.transactions.UpdateTransactionFragment"
-        android:label="UpdateTransactionFragment" >
+        android:label="UpdateTransactionFragment"
+        tools:layout="@layout/fragment_update_transaction" >
         <action
             android:id="@+id/action_updateTransactionFragment_to_transactionListsFragment"
             app:destination="@id/transactionListsFragment" />
@@ -51,7 +52,8 @@
     <fragment
         android:id="@+id/addCategoryFragment"
         android:name="com.example.financetracker.view.categories.AddCategoryFragment"
-        android:label="AddCategoryFragment" >
+        android:label="AddCategoryFragment"
+        tools:layout="@layout/fragment_add_category" >
         <action
             android:id="@+id/action_addCategoryFragment_to_categoryListsFragment"
             app:destination="@id/categoryListsFragment" />
@@ -59,7 +61,8 @@
     <fragment
         android:id="@+id/updateCategoryFragment"
         android:name="com.example.financetracker.view.categories.UpdateCategoryFragment"
-        android:label="UpdateCategoryFragment" >
+        android:label="UpdateCategoryFragment"
+        tools:layout="@layout/fragment_update_category">
         <action
             android:id="@+id/action_updateCategoryFragment_to_categoryListsFragment"
             app:destination="@id/categoryListsFragment" />

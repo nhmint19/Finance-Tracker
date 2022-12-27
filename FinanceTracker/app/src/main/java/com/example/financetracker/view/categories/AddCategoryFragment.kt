@@ -62,7 +62,10 @@ class AddCategoryFragment : Fragment() {
     // handle open color dialog
     private fun onClickColorInput(v : View) {
         // References: "com.github.yukuku:ambilwarna:2.0.1"
-        val colorPickerDialogue = AmbilWarnaDialog(requireContext(), ResourcesCompat.getColor(resources, R.color.primary, null),
+        val colorPickerDialogue = AmbilWarnaDialog(
+            requireContext(),
+            ResourcesCompat.getColor(resources, R.color.primary,
+                null),
             object : AmbilWarnaDialog.OnAmbilWarnaListener {
                 override fun onCancel(dialog: AmbilWarnaDialog?) {
                     // action when click on cancel
